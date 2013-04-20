@@ -35,38 +35,44 @@ int FreqNote::calcHalfStepOffset(std::string note)
 
 	else
 	{
-		if (note.at(0) == 'D')
+		char c = note.at(0);
+		char d = note.at(1);
+
+		if (c == 'D')
 		{
-			if (note.at(1) == 'b')
+			if (d == 'b')
 			n = n - 8;
 
 			else
 			n = n - 6;
 		}
 
-		else if (note.at(0) == 'G')
+		else if (c == 'G')
 		{
-			if (note.at(1) == 'b')
+			if (d == 'b')
 			n = n - 3;
 
 			else
 			n = n - 1;
 		}
 
-		else if (note.at(0) == 'A')
+		else if (c == 'A')
 		{
-			if (note.at(1) == 'b')
+			if (d == 'b')
 			n = n - 1;
 
 			else
 			n = n + 1;
 		}
 
-		else if (note.at(0) == 'C')
+		else if (c == 'C')
 		n = n - 8;
 
-		else if (note.at(0) == 'E')
+		else if (c == 'E')
 		n = n - 6;
+
+		else if (c == 'B')
+		n = n + 1;
 
 		else
 		n = n - 3;
@@ -82,13 +88,11 @@ float FreqNote::calcFreq(std::string note)
 
 	int n = calcHalfStepOffset(note);
 
-	long double a = A;
-
-	a = a * 440.00;
+	long double a = 440.00;
 
 	if (n > 0)
 	{
-		for (int i = 1; i < n; i++)
+		for (int i = 0; i < n; i++)
 		{
 			a = a * A;
 		}
@@ -96,7 +100,7 @@ float FreqNote::calcFreq(std::string note)
 
 	else
 	{
-		for (int i = 1; i > n; i--)
+		for (int i = 0; i > n; i--)
 		{
 			a = a / A;
 		}
