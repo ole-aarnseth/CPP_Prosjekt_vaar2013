@@ -1,11 +1,11 @@
 #include <iostream>
+#include "class_bar.h"
+#include "class_sound.h"
 
-using namespace std;
+using namespace music;
+
 
 int main(){
 
-  cout << "haha!" << endl;
-
-  return 0;
-
+return 0;
 }
