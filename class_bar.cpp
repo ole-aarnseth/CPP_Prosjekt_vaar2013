@@ -1,26 +1,27 @@
 #include "class_bar.h"
 #include <iostream>
 
-using namespace music_n;
+using namespace music;
 
 bar::bar(){timeleft = 0;}
 
-bool bar::addTone(tone myTone){
+bool bar::addNote(note myNote){
 
-	if(timeleft + (1/myTone.getLength()) <= 1){
-	tones.push_back(myTone);
-	timeleft +=(1/myTone.getLength());
+	if(timeleft + (1/myNote.getLength()) <= 1){
+	notes.push_back(myNote);
+	timeleft +=(1/myNote.getLength());
 	return true;
+	}
+	else{
+	return false;
 	}
 }
 
-tone bar::getTone(int i){
-if((i) < tones.size())
-	return tones[i];
+note bar::getNote(int i){
+if((i) < notes.size())
+	return notes[i];
 }
 
 int bar::getAntT(){
-return tones.size();
+return notes.size();
 }
-
-

@@ -3,22 +3,22 @@
 
 #include <string>
 #include <vector>
-#include "class_tone.h"
+#include "class_note.h"
 
 
-namespace music_n{
+namespace music{
 
 	class bar
 	{
-	std::vector<tone> tones;
-	int ant_toner;	//Used for iteration
-	double timeleft;		
+	std::vector<note> notes;
+	int ant_noter;	//Used for iteration
+	double timeleft; //Holde øye med hvor mye av takten som gjenstår.		
 		public:
 			bar();
-			bool addTone(tone myTone);
-			bool removeTone(int i);
-			bool checkSpace(tone myTone);
-			tone getTone(int i);
+			bool addNote(note myNote);
+			bool removeNote(int i);
+			bool checkSpace(note myNote);
+			note getNote(int i);
 			int getAntT();
 	};
 

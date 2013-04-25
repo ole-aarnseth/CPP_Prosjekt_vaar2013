@@ -85,6 +85,9 @@ float FreqNote::calcFreq(std::string note)
 {
 	if (note.length() > 3 || note.length() < 2)
 	return -1;
+	
+	if(note == "p" || note == "P")
+	return 1;
 
 	int n = calcHalfStepOffset(note);
 
