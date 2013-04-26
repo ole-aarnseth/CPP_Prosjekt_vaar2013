@@ -11,6 +11,7 @@ namespace music{
 		      std::string getString();
 		      int getNumber();
 		      const char* int2char(char *src, int number);
+		      int char2int(char str[]);
 	};
 
 }
