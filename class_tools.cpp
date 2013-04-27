@@ -37,8 +37,20 @@ int tools::char2int(char str[])
 {
 	int p_tens = 1, r = 0;
 
+	if (str[0] == '\0')
+	{
+		std::cout << "Error! Empty string.\n";
+		return 0;
+	}
+
 	if (str[0] == '-')
 	{
+		if (str[1] == '\0')
+		{
+			std::cout << "Error! Empty string.\n";
+			return 0;
+		}
+
 		for (int i = 2; str[i] != '\0'; i++)
 		{
 			p_tens *= 10;
