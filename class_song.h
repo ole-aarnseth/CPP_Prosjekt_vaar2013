@@ -21,6 +21,8 @@ namespace music{
 			bool addNotes(note myNote, int bar);
 			bool addBar();
 			int barCount();
+			bool validateNote(note myNote);
+			void play();
 	};
 
 }

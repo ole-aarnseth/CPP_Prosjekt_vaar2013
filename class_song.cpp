@@ -1,4 +1,5 @@
 #include "class_song.h"
+#include "class_sound.h"
 
 using namespace music;
 
@@ -26,11 +27,18 @@ void song::setBpm(int newbpm){
 
 bool song::addNotes(note myNote, int barindeks){
   if(barindeks < bars.size()){
-    bars[barindeks].addNote(myNote);
+    if(bars[barindeks].addNote(myNote))
+    {
     return true;
+    }
+  return false;
   }
 
   return false;
+}
+
+bool song::validateNote(note myNote){
+  
 }
 
 bool song::addBar(){
@@ -39,5 +47,11 @@ bool song::addBar(){
 }
 
 int song::barCount(){
-  return bars.size()-1;
+  return bars.size();
 }
+
+void song::play(){
+  sound mySound;
+  mySound.playSequence(mySound.parse(bars,bpm));
+}
+

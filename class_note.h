@@ -8,10 +8,10 @@ namespace music{
 	class note
 	{
 	std::string key;
-	double length;
+	int length;
 		public:
-			note(std::string c_key, double c_length);
-			double getLength();
+			note(std::string c_key, int c_length);
+			int getLength();
 			std::string getKey();
 	};
 
