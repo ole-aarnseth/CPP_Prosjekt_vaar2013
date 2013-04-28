@@ -43,7 +43,7 @@ bool song::validateNote(std::string note)
 
   if(note.length() > 3 || note.length() < 2)
   {
-    cout << "feil størrelse!" << endl;
+    
     wrongCount++;
   }
 
