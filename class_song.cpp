@@ -54,7 +54,7 @@ bool song::validateNote(std::string note)
 
     char c = note.at(0);
 
-    if(c == 'C' || c == 'D'|| c == 'E' || c == 'F' || c == 'G' || c == 'B')
+    if(c == 'C' || c == 'D'|| c == 'E' || c == 'F' || c == 'G' || c == 'B' || c == 'A')
     {
 
    
@@ -83,7 +83,7 @@ bool song::validateNote(std::string note)
   {
     char c = note.at(0);
 
-    if(c == 'C' || c == 'D'|| c == 'E' || c == 'F' || c == 'G' || c == 'B')
+    if(c == 'C' || c == 'D'|| c == 'E' || c == 'F' || c == 'G' || c == 'B' || c == 'A')
     {
 
     
