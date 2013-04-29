@@ -35,3 +35,13 @@ int sound::calculateLength(double length, int bpm){
 int notelength = bpm*((4+2)/(length/4));
 return notelength; 
 }
+
+void sound::makeSound(int l, int h)
+{
+	int fd = open("/dev/console", O_WRONLY);
+  	ioctl(fd, KIOCSOUND, (int)(1193180/h));
+  	usleep(1000*l);
+  	ioctl(fd, KIOCSOUND, 0);
+  	close(fd);
+
+}
