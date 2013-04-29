@@ -1,6 +1,7 @@
 #include "class_tools.h"
 #include <sstream>
 #include <iostream>
+#include <stdio.h>
 
 using namespace music;
 
@@ -80,4 +81,8 @@ int tools::char2int(char str[])
 	}
 
 	return r;
+}
+
+void tools::dbl2char(double d, char* c){
+    sprintf(c , "%lf" , d);
 }

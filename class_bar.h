@@ -20,6 +20,7 @@ namespace music{
 			bool checkSpace(note myNote);
 			note getNote(int i);
 			int getAntT();
+			double getTimeleft();
 	};
 
 }

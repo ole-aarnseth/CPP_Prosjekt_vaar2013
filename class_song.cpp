@@ -27,6 +27,7 @@ void song::setBpm(int newbpm){
 
 bool song::addNotes(note myNote, int barindeks){
   if(barindeks < bars.size()){
+    
     if(bars[barindeks].addNote(myNote))
     {
     return true;
@@ -173,5 +174,9 @@ int song::barCount(){
 void song::play(){
   sound mySound;
   mySound.playSequence(mySound.parse(bars,bpm));
+}
+
+bar song::getBar(int i){
+  return bars[i];
 }
 

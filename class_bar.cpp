@@ -6,15 +6,15 @@ using namespace music;
 bar::bar(){timeleft = 0;}
 
 bool bar::addNote(note myNote){
+double one = 1;
 
-	if(timeleft + (1/myNote.getLength()) <= 1){
+	if(timeleft + (one/(double)myNote.getLength()) <= 1){
 	notes.push_back(myNote);
-	timeleft +=(1/myNote.getLength());
+	timeleft = timeleft + (one/(double)myNote.getLength());
 	return true;
 	}
-	else{
-	return false;
-	}
+
+return false;
 }
 
 note bar::getNote(int i){
@@ -24,4 +24,8 @@ if((i) < notes.size())
 
 int bar::getAntT(){
 return notes.size();
+}
+
+double bar::getTimeleft(){
+  return timeleft;
 }

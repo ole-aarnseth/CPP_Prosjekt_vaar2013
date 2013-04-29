@@ -60,8 +60,6 @@ int FreqNote::calcHalfStepOffset(std::string note)
 		{
 			if (d == 'b')
 			n = n - 1;
-
-			else
 			n = n + 1;
 		}
 

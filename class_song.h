@@ -24,6 +24,7 @@ namespace music{
 			bool validateNote(std::string);
 			bool validateNoteLength(int);
 			void play();
+			bar getBar(int i);
 	};
 
 }
