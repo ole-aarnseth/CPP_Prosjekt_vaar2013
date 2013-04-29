@@ -32,7 +32,7 @@ return output;
 }
 
 int sound::calculateLength(double length, int bpm){
-int notelength = bpm*((4+2)/(length/4));
+int notelength = ((60 * 1000)/bpm)*(4/length);
 return notelength; 
 }
 
