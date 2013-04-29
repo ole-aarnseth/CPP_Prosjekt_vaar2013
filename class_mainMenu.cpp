@@ -1,6 +1,7 @@
 #include "class_mainMenu.h"
+#include "class_tracker.h"
 
-using namespace menu;
+using namespace music;
 
 mainMenu::mainMenu() :
 startx(0),
@@ -72,7 +73,9 @@ starty(0)
 
 	else if (choice == 2)
 	{
-		// <start tracker mode>
+		clear();
+		tracker myTracker;
+		myTracker.track();
 	}
 
 	else if (choice == 3)

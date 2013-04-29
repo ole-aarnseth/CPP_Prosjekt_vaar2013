@@ -8,7 +8,7 @@
 #define HEIGHT 8
 #define N_CHOICES 4
 
-namespace menu{
+namespace music{
 
 	class mainMenu{
 		int startx;
