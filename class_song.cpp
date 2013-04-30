@@ -1,5 +1,6 @@
 #include "class_song.h"
 #include "class_sound.h"
+#include "class_tools.h"
 
 using namespace music;
 
@@ -179,4 +180,33 @@ void song::play(){
 bar song::getBar(int i){
   return bars[i];
 }
+
+bool song::delBar(int i){
+  if(i < bars.size()){
+  bars.erase(bars.begin()+i);
+  return true;
+  }
+return false;
+}
+
+const char* song::bar2char(char *src, int number){
+  std::string output;
+  tools myTools;
+  bar thisbar = bars[number];
+  
+  for(int i = 0; i < thisbar.getAntT(); i++)
+  {
+    output.append(myTools.int2string(i+1));
+    output.append(": ");
+    output.append(thisbar.getNote(i).toString()); 
+    output.append("\n");
+  }
+
+src = (char*)output.c_str();
+return src;
+}
+
+
+
+
 

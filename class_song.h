@@ -25,6 +25,8 @@ namespace music{
 			bool validateNoteLength(int);
 			void play();
 			bar getBar(int i);
+			bool delBar(int i);
+			const char* bar2char(char *src, int number);
 	};
 
 }
