@@ -43,18 +43,33 @@ void keyboard::playSound()
   while(i < 10)
   {
         ch = getch();	
-	st = tall.at(i);	
-	st1 = tall.at(i+1);
+	st = tall.at(i);
+	
+	if(st != '8')
+	{
+	   st1 = tall.at(i+1);
+	}
 
 	if(ch == 32)//space
 	{
-	   i += 1;
+	  if(i == tall.length()-1)
+	  {
+	    i = 0;
+	  }
+
+	  else
+	  {
+	    i++;
+	  }
 	  
 	}
 
-	if(ch == 60)//space
+	if(ch == 60)//<
 	{
-	   i -= 1;
+	   if(i > 0)
+	   {
+	    i--;
+	   }
 	  
 	}
 
@@ -118,6 +133,15 @@ void keyboard::playSound()
 	    str += st;
 	    float f = freq.calcFreq(str);
 	    s.makeSound(100,f);
+	}
+	
+	if(ch == 44)//,
+	{     
+	    string str = "A";
+	    str += st1;
+	    float f = freq.calcFreq(str);
+	    s.makeSound(100,f);
+	   
 	}
 	    //rad over
 	if(ch == 115)//s
