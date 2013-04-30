@@ -13,6 +13,7 @@ namespace music{
 			note(std::string c_key, int c_length);
 			int getLength();
 			std::string getKey();
+			std::string toString();
 	};
 
 }
