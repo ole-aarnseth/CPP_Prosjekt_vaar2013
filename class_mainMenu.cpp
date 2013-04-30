@@ -1,5 +1,6 @@
 #include "class_mainMenu.h"
 #include "class_tracker.h"
+#include "class_keyboard.h"
 
 using namespace music;
 
@@ -69,6 +70,9 @@ starty(0)
 	if (choice == 1)
 	{
 		// <start piano mode>
+		clear();
+		keyboard keyb;
+		keyb.playSound();
 	}
 
 	else if (choice == 2)
