@@ -15,6 +15,7 @@ namespace music{
 	{
 		public:
 		  void track();
+		  void dispMenu();
 	};
 
 }
