@@ -18,8 +18,9 @@ return false;
 }
 
 note bar::getNote(int i){
-if((i) < notes.size())
-	return notes[i];
+if((i) < notes.size()){
+  return notes.at(i);
+  }
 }
 
 int bar::getAntT(){
