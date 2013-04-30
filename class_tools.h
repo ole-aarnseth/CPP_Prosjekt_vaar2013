@@ -13,6 +13,7 @@ namespace music{
 		      const char* int2char(char *src, int number);
 		      int char2int(char str[]);
 		      void dbl2char(double d, char* c);
+		      std::string int2string(int number);
 	};
 
 }

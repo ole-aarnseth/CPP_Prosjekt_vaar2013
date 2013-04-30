@@ -86,3 +86,11 @@ int tools::char2int(char str[])
 void tools::dbl2char(double d, char* c){
     sprintf(c , "%lf" , d);
 }
+
+std::string tools::int2string(int number){
+std::string s;
+std::stringstream out;
+out << number;
+s = out.str();
+return s;
+}
