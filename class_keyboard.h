@@ -15,7 +15,7 @@ namespace music{
   public:
     keyboard();
     void playSound();
-    
+    void printPiano(char, char);
 
   };
 
