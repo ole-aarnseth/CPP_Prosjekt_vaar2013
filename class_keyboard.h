@@ -13,7 +13,6 @@ namespace music{
     freq::FreqNote freq;
 
   public:
-    keyboard();
     void playSound();
     void printPiano(char, char);
 
@@ -22,3 +21,4 @@ namespace music{
 
 
 }
+#endif
