@@ -3,7 +3,7 @@
 using namespace music;
 
 tools mytools;
-song mySong("Untitled", 120);
+song mySong("Untitled", 100);
 char myArr[255];
 
 void tracker::track(){
@@ -77,7 +77,7 @@ void tracker::track(){
 	dispMenu();
 	}
 	
-	if(ch == KEY_F(7)){
+	if(ch == KEY_F(17)){
 	char buffer[10];
 	echo();  
 	bar myBar = mySong.getBar(mySong.barCount()-1);
@@ -85,6 +85,20 @@ void tracker::track(){
 	printw("Timeleft in the current bar: ");
 	printw(buffer);
 	printw("\n");
+	}
+	
+	if(ch == KEY_F(7)){
+	char buffer[255];
+	printw("\nNew name: ");
+	echo();
+	getstr(buffer);
+	mySong.rnTitle(buffer);
+	dispMenu();
+	}
+	
+	if(ch == KEY_F(10)){
+	mySong = song("Untitled", 100);
+	dispMenu();
 	}
 	
 	if(ch == KEY_F(12))
@@ -104,7 +118,9 @@ int pos = (80 - 48) / 2;
 	mvprintw(4, pos, "/_/|_| \\__/ \\__/ \\_,_/ /_/   (_)/_/");
 	printw("\n");
 
-	printw("\nF2 = NOTE + | F3 BAR + | F4 = PLAY | F5 = BPM | F6 = DEMO | F12 = EXIT\n");
+	printw("\nF2 = NOTE + | F4 BAR + | F6 = PLAY | F5 = BPM | F6 = DEMO | F12 = EXIT");
+	printw("\nF3 = NOTE - | F5 BAR - | F4 = CP BARS | F7 = RN SONG | F10 = NEW SONG  \n");
+	printw("-----------------------------------------------------------------------");
 	
 	printw("\nSong name: ");
 	printw(mySong.getTitle().c_str());
@@ -112,5 +128,8 @@ int pos = (80 - 48) / 2;
 	printw(mytools.int2char(myArr,mySong.getBpm()));
 	printw(" | Bar count: ");
 	printw(mytools.int2char(myArr,mySong.barCount()));
+	printw(" | Note count: ");
+	printw(mytools.int2char(myArr,mySong.noteCount()));
+	
 	printw("\n\n");
 }
