@@ -35,6 +35,8 @@ void keyboard::playSound()
   
   char st = tall.at(i);
   char st1 = tall.at(i+1);
+
+  printPiano(st, st1);	
   
   while(true)
   {
