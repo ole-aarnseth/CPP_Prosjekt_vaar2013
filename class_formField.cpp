@@ -1,5 +1,5 @@
 #include "class_formField.h"
-#include <iostream>
+
 using namespace music;
 
 formField::formField(int l, int y, int x) :
@@ -47,7 +47,7 @@ void formField::moveRight()
 	cpos++;
 }
 
-void formField::addToBuffer(char c)
+void formField::addToBuffer(char c) //MÅ HUSKE Å STØTTE "ADD-MELLOM"
 {
 	if (buffer.length() < length)
 	{
