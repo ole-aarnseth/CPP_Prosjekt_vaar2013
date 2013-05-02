@@ -18,6 +18,10 @@ std::string song::getTitle(){
   return title;
 }
 
+void song::rnTitle(std::string newname){
+  title = newname;
+}
+
 void song::rename(std::string newtitle){
   title = newtitle;
 }
@@ -37,6 +41,57 @@ bool song::addNotes(note myNote, int barindeks){
   }
 
   return false;
+}
+
+bool song::addBar(){
+  bar newbar;
+  bars.push_back(newbar);
+}
+
+int song::barCount(){
+  return bars.size();
+}
+
+int song::noteCount(){
+int counter = 0;
+  for(int i = 0; i < bars.size(); i++){
+    counter += bars[i].getAntT();
+  }
+  return counter;
+}
+
+void song::play(){
+  sound mySound;
+  mySound.playSequence(mySound.parse(bars,bpm));
+}
+
+bar song::getBar(int i){
+  return bars[i];
+}
+
+bool song::delBar(int i){
+  if(i < bars.size()){
+  bars.erase(bars.begin()+i);
+  return true;
+  }
+return false;
+}
+
+const char* song::bar2char(char *src, int number){
+  std::string output;
+  tools myTools;
+  bar thisbar = bars[number];
+  
+  for(int i = 0; i < thisbar.getAntT(); i++)
+  {
+    output.append(myTools.int2string(i+1));
+    output.append(": ");
+    output.append(thisbar.getNote(i).toString()); 
+    output.append("\n");
+  }
+
+src = (char*)output.c_str();
+return src;
 }
 
 bool song::validateNote(std::string note)
@@ -161,52 +216,3 @@ bool song::validateNoteLength(int i)
  
 
 }
-
-
-bool song::addBar(){
-  bar newbar;
-  bars.push_back(newbar);
-}
-
-int song::barCount(){
-  return bars.size();
-}
-
-void song::play(){
-  sound mySound;
-  mySound.playSequence(mySound.parse(bars,bpm));
-}
-
-bar song::getBar(int i){
-  return bars[i];
-}
-
-bool song::delBar(int i){
-  if(i < bars.size()){
-  bars.erase(bars.begin()+i);
-  return true;
-  }
-return false;
-}
-
-const char* song::bar2char(char *src, int number){
-  std::string output;
-  tools myTools;
-  bar thisbar = bars[number];
-  
-  for(int i = 0; i < thisbar.getAntT(); i++)
-  {
-    output.append(myTools.int2string(i+1));
-    output.append(": ");
-    output.append(thisbar.getNote(i).toString()); 
-    output.append("\n");
-  }
-
-src = (char*)output.c_str();
-return src;
-}
-
-
-
-
-

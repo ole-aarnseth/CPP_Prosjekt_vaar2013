@@ -83,7 +83,7 @@ void keyboard::playSound()
 	    break;
         }   
 	  
-	if(ch == 122)//z
+	if(ch == 122 || ch == 90)//z
 	{     
 	    string str = "A";
 	    str += st;
@@ -92,7 +92,7 @@ void keyboard::playSound()
 	   
 	}
 		      
-	if(ch == 120)//x
+	if(ch == 120 || ch == 88)//x
 	{
 	    string str = "B";
 	    str += st;
@@ -100,7 +100,7 @@ void keyboard::playSound()
 	    s.makeSound(100,f);
 	}
 
-	if(ch == 99)//c
+	if(ch == 99 || ch == 67)//c
 	{
 	    string str = "C";
 	    str += st1;
@@ -108,7 +108,7 @@ void keyboard::playSound()
 	    s.makeSound(100,f);
 	}
         
-	if(ch == 118)//v
+	if(ch == 118 || ch == 86)//v
 	{
 	    string str = "D";
 	    str += st1;
@@ -116,7 +116,7 @@ void keyboard::playSound()
 	    s.makeSound(100,f);
         }
 	
-	if(ch == 98)//b
+	if(ch == 98 || ch == 66)//b
 	{
 	    string str = "E";
 	    str += st1;
@@ -124,7 +124,7 @@ void keyboard::playSound()
 	    s.makeSound(100,f);
 	}
 	
-	if(ch == 110)//n
+	if(ch == 110 || ch == 78)//n
 	{
 	    string str = "F";
 	    str += st1;
@@ -132,7 +132,7 @@ void keyboard::playSound()
 	    s.makeSound(100,f);
 	}
 
-	if(ch == 109)//m
+	if(ch == 109 || ch == 77)//m
 	{
 	    string str = "G";
 	    str += st1;
@@ -149,7 +149,7 @@ void keyboard::playSound()
 	   
 	}
 	    //rad over
-	if(ch == 115)//s
+	if(ch == 115 || ch == 83)//s
 	{
 	    string str = "A#";
 	    str += st;
@@ -157,7 +157,7 @@ void keyboard::playSound()
 	    s.makeSound(100,f);
 	}
 	 
-	if(ch == 102)//f
+	if(ch == 102 || ch == 70)//f
 	{
 	    string str = "C#";
 	    str += st1;
@@ -165,7 +165,7 @@ void keyboard::playSound()
 	    s.makeSound(100,f);
 	}
 	   
-        if(ch == 103)//g
+        if(ch == 103 || ch == 71)//g
 	{
 	    string str = "D#";
 	    str += st1;
@@ -173,7 +173,7 @@ void keyboard::playSound()
 	    s.makeSound(100,f);
 	}
 	   
-        if(ch == 106)//j
+        if(ch == 106 || ch == 74)//j
 	{
 	    string str = "F#";
 	    str += st1;
@@ -181,7 +181,7 @@ void keyboard::playSound()
 	    s.makeSound(100,f);
 	}
 
-	if(ch == 107)//k
+	if(ch == 107 || ch == 75)//k
 	{
 	    string str = "G#";
 	    str += st1;
