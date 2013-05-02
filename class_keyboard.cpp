@@ -12,6 +12,7 @@
 #include <time.h>
 
 #include "class_keyboard.h"
+#include "class_mainMenu.h"
 
 
 using namespace music;
@@ -191,7 +192,8 @@ void keyboard::playSound()
 	
 	refresh();
     }
-	endwin();  
+	endwin();
+  mainMenu mainM;
 }
 
 void keyboard::printPiano(char c, char d)

@@ -1,4 +1,5 @@
 #include "class_tracker.h"
+#include "class_mainMenu.h"
 
 using namespace music;
 
@@ -107,6 +108,8 @@ void tracker::track(){
 	refresh();
 	}
 	endwin();
+	
+  mainMenu mainM;
 }
 
 void tracker::dispMenu(){

@@ -2,6 +2,7 @@
 #include "class_tracker.h"
 #include "class_keyboard.h"
 
+
 using namespace music;
 
 mainMenu::mainMenu() :
@@ -73,6 +74,7 @@ starty(0)
 		clear();
 		keyboard keyb;
 		keyb.playSound();
+		
 	}
 
 	else if (choice == 2)
