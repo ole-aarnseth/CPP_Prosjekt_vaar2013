@@ -4,11 +4,10 @@ WINDOW *create_newwin(int height, int width, int starty, int startx);
 void destroy_win(WINDOW *local_win);
 
 int main()
-{	
-        WINDOW *my_win;
-        FIELD *field[3];
+{
+    FIELD *field[3];
 	FORM  *my_form;
-	int ch, starty, startx, width, height;
+	int ch, starty, startx;
 
 	/* Initialize curses */
 	initscr();
@@ -42,18 +41,15 @@ int main()
 	post_form(my_form);
 	refresh();
 
-	// Create output window
-	height = 14;
-	width = 22;
-	starty = (LINES - height) / 2;
-	startx = (COLS - width) / 2;
+	starty = (LINES - 10) / 2;
+	startx = (COLS - 21) / 2;
 
-	//mvprintw(4, 10, "Value 1:");
-	//mvprintw(6, 10, "Value 2:");
+	mvprintw(starty, startx, "+-------------------+");
+	for (int i = 0; i < 8; i++)
+	  mvprintw(++starty, startx, "|                   |");
+	mvprintw(++starty, startx, "+-------------------+");
 	refresh();
-	//form_driver(my_form, REQ_LAST_FIELD);
-	my_win = create_newwin(height, width, starty, startx);
-	refresh();
+
 	/* Loop through to get user requests */
 	while((ch = getch()) != 10)
 	{	switch(ch)
