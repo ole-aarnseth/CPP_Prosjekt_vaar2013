@@ -14,6 +14,7 @@ namespace music{
 		      int char2int(char str[]);
 		      void dbl2char(double d, char* c);
 		      std::string int2string(int number);
+		      std::string convertLetter(std::string);
 	};
 
 }
