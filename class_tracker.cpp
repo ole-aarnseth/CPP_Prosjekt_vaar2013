@@ -32,7 +32,7 @@ void tracker::track(){
 	getstr(key);  
 	printw("Enter length: ");
 	getstr(length);
-	str = key;
+	str = mytools.convertLetter(key);
 	note myNote(str, mytools.char2int(length));
 	  if(mySong.addNotes(myNote, mySong.barCount()-1)){
 	  dispMenu();
@@ -45,12 +45,12 @@ void tracker::track(){
 	  }
 	}
 	
-	if(ch == KEY_F(3)){
+	if(ch == KEY_F(4)){
 	mySong.addBar(); 
 	dispMenu();
 	}
 	
-	if(ch == KEY_F(4)){
+	if(ch == KEY_F(6)){
 	char buffer[10];
 	printw("\nHow many times? ");
 	echo();
@@ -61,9 +61,18 @@ void tracker::track(){
 	}
 	printw("\nDone ");
 	}
-
 	
 	if(ch == KEY_F(5)){
+	char buffer[10];
+	printw("\nWhat bar do you want to erase? ");
+	echo();
+	getstr(buffer);  
+	if(!mySong.delBar(mytools.char2int(buffer)))
+	  printw("Invalid selection!");
+	dispMenu();
+	}
+
+	if(ch == KEY_F(8)){
 	char buffer[10];
 	echo();
 	printw("New BPM: ");
@@ -72,7 +81,7 @@ void tracker::track(){
 	dispMenu();
 	}
 	
-	if(ch == KEY_F(6)){
+	if(ch == KEY_F(9)){
 	demo myDemo;
 	mySong = myDemo.grieg();
 	dispMenu();
@@ -121,7 +130,7 @@ int pos = (80 - 48) / 2;
 	mvprintw(4, pos, "/_/|_| \\__/ \\__/ \\_,_/ /_/   (_)/_/");
 	printw("\n");
 
-	printw("\nF2 = NOTE + | F4 BAR + | F6 = PLAY | F5 = BPM | F6 = DEMO | F12 = EXIT");
+	printw("\nF2 = NOTE + | F4 BAR + | F6 = PLAY | F8 = BPM | F9 = DEMO | F12 = EXIT");
 	printw("\nF3 = NOTE - | F5 BAR - | F4 = CP BARS | F7 = RN SONG | F10 = NEW SONG  \n");
 	printw("-----------------------------------------------------------------------");
 	
