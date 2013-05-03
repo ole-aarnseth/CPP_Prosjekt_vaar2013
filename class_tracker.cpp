@@ -110,6 +110,28 @@ void tracker::track(){
 	mySong = song("Untitled", 100);
 	dispMenu();
 	}
+
+	if(ch == 112 || ch == 80)//p
+	{
+	 
+	  printw("Enter the length of the pause: ");
+	  char length[10];
+	  echo();
+          getstr(length);
+	  int l = mytools.char2int(length);
+	  note myNote("P",l); 
+	   if(mySong.addNotes(myNote, mySong.barCount()-1)){
+	  dispMenu();
+	  char buff[255];
+	  printw("\n");
+	  printw(mySong.bar2char(buff, mySong.barCount()-1));
+	  }
+	  else{
+	  printw("Invalid insertion!");
+	  }
+	  
+	
+	}
 	
 	if(ch == KEY_F(12))
 		break;//Exits program
@@ -130,8 +152,8 @@ int pos = (80 - 48) / 2;
 	mvprintw(4, pos, "/_/|_| \\__/ \\__/ \\_,_/ /_/   (_)/_/");
 	printw("\n");
 
-	printw("\nF2 = NOTE + | F4 BAR + | F6 = PLAY | F8 = BPM | F9 = DEMO | F12 = EXIT");
-	printw("\nF3 = NOTE - | F5 BAR - | F4 = CP BARS | F7 = RN SONG | F10 = NEW SONG  \n");
+	printw("\nF2 = NOTE +| F4 BAR +| F6 = PLAY   | F8 = BPM    | F9 = DEMO     | F12 = EXIT");
+	printw("\nF3 = NOTE -| F5 BAR -| F4 = CP BARS| F7 = RN SONG| F10 = NEW SONG| P = Pause \n");
 	printw("-----------------------------------------------------------------------");
 	
 	printw("\nSong name: ");
