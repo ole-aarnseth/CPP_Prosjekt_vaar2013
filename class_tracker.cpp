@@ -96,10 +96,23 @@ void tracker::track(){
 	char buffer[10];
 	printw("\nWhat bar do you want to erase? ");
 	echo();
-	getstr(buffer);  
-	if(!mySong.delBar(mytools.char2int(buffer)))
-	  printw("Invalid selection!");
-	dispMenu();
+	getstr(buffer);
+	int tall = mytools.char2int(buffer);
+	for(int i = 1; i < mySong.getBar(tall-1).getAntT(); i++)
+	{
+	  mySong.deleteNote(tall, i);
+	}
+	if(mySong.delBar(mytools.char2int(buffer)))
+	{
+	    dispMenu();
+	  
+	}
+	
+	else
+	{
+	    printw("Invalid selection!");
+	}
+
 	}
 
 	if(ch == KEY_F(8)){

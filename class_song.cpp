@@ -71,10 +71,18 @@ bar song::getBar(int i){
 }
 
 bool song::delBar(int i){
-  if(i <= bars.size()){
-  bars.erase(bars.begin()+(i));
-  return true;
+  
+  if(i == 0)
+  {
+    return false;
   }
+
+  if(i <= bars.size())
+  {    
+    bars.erase(bars.begin()+i);
+    return true;
+  }
+
 return false;
 }
 
