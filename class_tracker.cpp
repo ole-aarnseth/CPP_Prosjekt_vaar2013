@@ -51,18 +51,14 @@ void tracker::track(){
 
 	if(ch == KEY_F(3))
 	{
-	 
-	  char barindeks[10];
+	 	  
 	  char noteindeks[10];
 	  echo();
-	  printw("\nWhich bar do you want to delete from? Please type in the barnumber. ");
-	  printw("\n");
-	  getstr(barindeks);
 	  printw("\nWhich note do you want to delete? Please type in the number next to the note. ");
 	  printw("\n");
 	  getstr(noteindeks);
 
-	  if(mySong.deleteNote(mytools.char2int(barindeks), mytools.char2int(noteindeks)))
+	  if(mySong.deleteNote(currentbar, mytools.char2int(noteindeks)))
 	  {
 	    dispMenu();
 	    char buff[500];

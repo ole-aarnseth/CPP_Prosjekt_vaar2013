@@ -39,7 +39,7 @@ bool bar::deleteNote(int i)
 {
   if(i <= notes.size())
   {
-    notes.erase(notes.begin() + i);
+    notes.erase(notes.begin() + i-1);
     return true;
   }
 
