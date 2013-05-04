@@ -85,18 +85,12 @@ void keyboard::playSound()
         }
         
         if(ch == 113 || ch == 81)//z
-	{     
-	  
-	  for(int i = 0; i < 1000; i++)
-	  {
-	    s.makeSound(10, 400+i, false);
-	    s.makeSound(10, 400-i, false);
-	  }
-	    /*s.makeSound(1,1,dontstop);
+	{    
+	    s.makeSound(1,1,dontstop);
 	    if(dontstop == false)
 	      dontstop = true;
 	    else
-	      dontstop = false;*/
+	      dontstop = false;
 	}
 	  
 	if(ch == 122 || ch == 90)//z
@@ -252,7 +246,7 @@ void keyboard::printPiano(char c, char d)
 
 
   printw("\n\nPress CAPS to increase octaves or < to decrease.\n"); 
-  printw("Press TAB to toggle continuous note");
+  printw("\nPress Q to toggle continuous note");
   printw("\n\nPress F12 to exit.");
    
   refresh();
