@@ -30,7 +30,7 @@ struct note_t{
 			void playSequence(std::vector<note_t> param);
 			std::vector<note_t> parse(std::vector<bar> bars, int bpm);
 			int calculateLength(double length, int pbm);
-			void makeSound(int, int);
+			void makeSound(int, int, bool);
 	};
 
 }

@@ -24,7 +24,7 @@ void keyboard::playSound()
 {
  
   int i = 0;
-
+  bool dontstop = false;
   int ch;
 
   initscr();
@@ -82,14 +82,29 @@ void keyboard::playSound()
         if(ch == KEY_F(12))
 	{
 	    break;
-        }   
+        }
+        
+        if(ch == 113 || ch == 81)//z
+	{     
+	  
+	  for(int i = 0; i < 1000; i++)
+	  {
+	    s.makeSound(10, 400+i, false);
+	    s.makeSound(10, 400-i, false);
+	  }
+	    /*s.makeSound(1,1,dontstop);
+	    if(dontstop == false)
+	      dontstop = true;
+	    else
+	      dontstop = false;*/
+	}
 	  
 	if(ch == 122 || ch == 90)//z
 	{     
 	    string str = "A";
 	    str += st;
 	    float f = freq.calcFreq(str);
-	    s.makeSound(100,f);
+	    s.makeSound(100,f,dontstop);
 	   
 	}
 		      
@@ -98,7 +113,7 @@ void keyboard::playSound()
 	    string str = "B";
 	    str += st;
 	    float f = freq.calcFreq(str);
-	    s.makeSound(100,f);
+	    s.makeSound(100,f,dontstop);
 	}
 
 	if(ch == 99 || ch == 67)//c
@@ -106,7 +121,7 @@ void keyboard::playSound()
 	    string str = "C";
 	    str += st1;
 	    float f = freq.calcFreq(str);
-	    s.makeSound(100,f);
+	    s.makeSound(100,f,dontstop);
 	}
         
 	if(ch == 118 || ch == 86)//v
@@ -114,7 +129,7 @@ void keyboard::playSound()
 	    string str = "D";
 	    str += st1;
 	    float f = freq.calcFreq(str);
-	    s.makeSound(100,f);
+	    s.makeSound(100,f,dontstop);
         }
 	
 	if(ch == 98 || ch == 66)//b
@@ -122,7 +137,7 @@ void keyboard::playSound()
 	    string str = "E";
 	    str += st1;
 	    float f = freq.calcFreq(str);
-	    s.makeSound(100,f);
+	    s.makeSound(100,f,dontstop);
 	}
 	
 	if(ch == 110 || ch == 78)//n
@@ -130,7 +145,7 @@ void keyboard::playSound()
 	    string str = "F";
 	    str += st1;
 	    float f = freq.calcFreq(str);
-	    s.makeSound(100,f);
+	    s.makeSound(100,f,dontstop);
 	}
 
 	if(ch == 109 || ch == 77)//m
@@ -138,7 +153,7 @@ void keyboard::playSound()
 	    string str = "G";
 	    str += st1;
 	    float f = freq.calcFreq(str);
-	    s.makeSound(100,f);
+	    s.makeSound(100,f,dontstop);
 	}
 	
 	if(ch == 44)//,
@@ -146,7 +161,7 @@ void keyboard::playSound()
 	    string str = "A";
 	    str += st1;
 	    float f = freq.calcFreq(str);
-	    s.makeSound(100,f);
+	    s.makeSound(100,f,dontstop);
 	   
 	}
 	    //rad over
@@ -155,7 +170,7 @@ void keyboard::playSound()
 	    string str = "A#";
 	    str += st;
 	    float f = freq.calcFreq(str);
-	    s.makeSound(100,f);
+	    s.makeSound(100,f,dontstop);
 	}
 	 
 	if(ch == 102 || ch == 70)//f
@@ -163,7 +178,7 @@ void keyboard::playSound()
 	    string str = "C#";
 	    str += st1;
 	    float f = freq.calcFreq(str);
-	    s.makeSound(100,f);
+	    s.makeSound(100,f,dontstop);
 	}
 	   
         if(ch == 103 || ch == 71)//g
@@ -171,7 +186,7 @@ void keyboard::playSound()
 	    string str = "D#";
 	    str += st1;
 	    float f = freq.calcFreq(str);
-	    s.makeSound(100,f);
+	    s.makeSound(100,f,dontstop);
 	}
 	   
         if(ch == 106 || ch == 74)//j
@@ -179,7 +194,7 @@ void keyboard::playSound()
 	    string str = "F#";
 	    str += st1;
 	    float f = freq.calcFreq(str);
-	    s.makeSound(100,f);
+	    s.makeSound(100,f,dontstop);
 	}
 
 	if(ch == 107 || ch == 75)//k
@@ -187,7 +202,7 @@ void keyboard::playSound()
 	    string str = "G#";
 	    str += st1;
 	    float f = freq.calcFreq(str);
-	    s.makeSound(100,f);
+	    s.makeSound(100,f,dontstop);
 	}
 	
 	refresh();
@@ -236,8 +251,8 @@ void keyboard::printPiano(char c, char d)
 
 
 
-  printw("\n\nPress space to increase octaves or < to decrease.\n"); 
-
+  printw("\n\nPress CAPS to increase octaves or < to decrease.\n"); 
+  printw("Press TAB to toggle continuous note");
   printw("\n\nPress F12 to exit.");
    
   refresh();

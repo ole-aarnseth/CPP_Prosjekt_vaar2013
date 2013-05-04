@@ -22,7 +22,6 @@ namespace music{
 			int getAntT();
 			double getTimeleft();
 			std::vector<note> getNotes();
-			bool deleteNote(int);
 	};
 
 }

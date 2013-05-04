@@ -54,7 +54,7 @@ void tracker::track(){
 	 	  
 	  char noteindeks[10];
 	  echo();
-	  printw("\nWhich note do you want to delete? Please type in the number next to the note. ");
+	  printw("\nNumber of note to delete: ");
 	  printw("\n");
 	  getstr(noteindeks);
 
