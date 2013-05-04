@@ -99,6 +99,5 @@ std::string tools::convertLetter(std::string s)
 {  
 if(s[0]>90)
     s[0]-=32;
-
 return s;
 }

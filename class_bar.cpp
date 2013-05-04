@@ -23,6 +23,10 @@ if((i) < notes.size()){
   }
 }
 
+std::vector<note> bar::getNotes(){
+  return notes;
+}
+
 int bar::getAntT(){
 return notes.size();
 }

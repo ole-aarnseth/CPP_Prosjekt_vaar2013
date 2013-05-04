@@ -1,6 +1,7 @@
 #include "class_song.h"
 #include "class_sound.h"
 #include "class_tools.h"
+#include "class_note.h"
 
 using namespace music;
 
@@ -31,9 +32,9 @@ void song::setBpm(int newbpm){
 }
 
 bool song::addNotes(note myNote, int barindeks){
-  if(barindeks < bars.size()){
+  if(barindeks-1 < bars.size()){
     
-    if(bars[barindeks].addNote(myNote))
+    if(bars[barindeks-1].addNote(myNote))
     {
     return true;
     }
@@ -80,14 +81,14 @@ return false;
 const char* song::bar2char(char *src, int number){
   std::string output;
   tools myTools;
-  bar thisbar = bars[number];
+  bar thisbar = bars[number-1];
+  std::vector<note> notes = thisbar.getNotes();
   
-  for(int i = 0; i < thisbar.getAntT(); i++)
+  for(int i = 0; i < notes.size(); i++)
   {
     output.append(myTools.int2string(i+1));
     output.append(": ");
-    output.append(thisbar.getNote(i).toString()); 
-    output.append("\n");
+    output.append(notes[i].toString());   
   }
 
 src = (char*)output.c_str();

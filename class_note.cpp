@@ -23,6 +23,6 @@ std::string output;
   output.append(key);
   output.append(", ");
   output.append(myTools.int2string(length));
-  //output.append("\n");
+  output.append("\n");
 return output;
 }

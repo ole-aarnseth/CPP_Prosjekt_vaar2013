@@ -21,6 +21,7 @@ namespace music{
 			note getNote(int i);
 			int getAntT();
 			double getTimeleft();
+			std::vector<note> getNotes();
 	};
 
 }
