@@ -217,3 +217,20 @@ bool song::validateNoteLength(int i)
  
 
 }
+
+bool song::deleteNote(int barindeks, int noteindeks)
+{
+  if(barindeks-1 < bars.size())
+  {
+    
+    if(bars[barindeks-1].deleteNote(noteindeks))
+    {
+      return true;
+    }
+
+    return false;
+  }
+
+  return false;
+
+}

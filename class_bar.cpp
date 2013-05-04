@@ -34,3 +34,17 @@ return notes.size();
 double bar::getTimeleft(){
   return timeleft;
 }
+
+bool bar::deleteNote(int i)
+{
+  if(i <= notes.size())
+  {
+    notes.erase(notes.begin() + i);
+    return true;
+  }
+
+  else
+  {
+    return false;
+  }
+}
