@@ -16,15 +16,42 @@ void trackerGUI::createWindow()
 	mvprintw(++tempy, wstartx, "%s", wv);
 
 	mvprintw(++tempy, wstartx, "%s", wh);
-	mvprintw(wstarty - 1, (COLS - 16) / 2, "Note:    Length:");
+	mvprintw(wstarty - 1, (COLS - 16) / 2, "Note:   Length:");
 	refresh();
 }
 
 void trackerGUI::refreshWindow()
 {
-	int ty = (wheight / 2) + wstarty;
-	int tx = ((wvertical.length() - 11) / 2) + wstartx;
-	mvprintw(ty, tx, "%d", KEY_EXIT);
+	attroff(COLOR_PAIR(1));
+	int tempy = wstarty + wheight - 2;
+	int tempx = wstartx + 5;
+	int stop = wheight - 2;
+
+	if (stop < note.size())
+	{
+		int y = note.size() - 1;
+		for (int i = 0; i < stop; i++)
+		{
+			mvprintw(tempy, tempx, "               ");
+			attron(A_UNDERLINE);
+			mvprintw(tempy--, tempx, "%s       %d", (char*)note[y].c_str(), length[y]);
+			attroff(A_UNDERLINE);
+			y--;
+		}
+	}
+
+	else
+	{
+		for (int i = note.size() - 1; i >= 0; i--)
+		{
+			mvprintw(tempy, tempx, "               ");
+			attron(A_UNDERLINE);
+			mvprintw(tempy--, tempx, "%s       %d", (char*)note[i].c_str(), length[i]);
+			attroff(A_UNDERLINE);
+		}
+	}
+
+	attron(COLOR_PAIR(1));
 }
 
 trackerGUI::trackerGUI() :
@@ -41,9 +68,9 @@ wvertical("|                   |")
 
 	wstarty = (LINES - 10) / 2;
 	wstartx = (COLS - 21) / 2;
-
+	wwidth = 21;
 	init_pair(1, COLOR_WHITE, COLOR_BLUE);
-	int inx = (COLS - 16) / 2; // Total length of both fields == 17
+	int inx = (COLS - 16) / 2; // Subtract total length of both fields
 	int iny = wstarty + wheight;
 	mvprintw(iny, inx - 10, "Input:");
 
@@ -55,47 +82,32 @@ wvertical("|                   |")
 	field.push_back(formField(6, iny, inx));
 	attroff(COLOR_PAIR(1));
 
-	/* Initialize the fields */
-	//field[0] = new_field(1, 10, iny, inx, 0, 0);
-	//field[1] = new_field(1, 10 , iny - 2, inx + 10, 0, 0); // 7
-	//field[2] = NULL;
-
-	/* Set field options */
-	//set_field_back(field[0], COLOR_PAIR(1)); 	/* Print a line for the option 	*/
-	//set_field_fore(field[0], COLOR_PAIR(1));
-	//field_opts_off(field[0], O_AUTOSKIP);  	/* Don't go to next field when this */
-	//set_field_type(field[0], TYPE_ALNUM);
-						/* Field is filled up 		*/
-
-	//set_field_back(field[1], COLOR_PAIR(1));
-	//set_field_fore(field[1], COLOR_PAIR(1));
-	//field_opts_off(field[1], O_AUTOSKIP);
-	//set_field_type(field[1], TYPE_ALNUM);
-
-	/* Create the form and post it */
-	//my_form = new_form(field);
-	//post_form(my_form);
-	//refresh();
-
 	createWindow();
-	//refreshWindow();
-	/* Loop through to get user requests */
-
 	attron(COLOR_PAIR(1));
 	unsigned int current = 0;
 	move(field[current].getYpos(), field[current].getXpos());
 
-	while((ch = getch()) != 10)
+	while((ch = getch()) != 9)
 	{
 		switch(ch)
 		{
 			case KEY_DOWN:
 			case KEY_UP:
-			case 9:
 				current = current == 0 ? 1 : 0;
 				move(field[current].getYpos(), field[current].getXpos() + field[current].getCpos());
 				break;
+			case 9: // Tab
+				break;
 			case 10: // Enter
+				note.push_back(field[0].getBuffer());
+				length.push_back(toolBox.char2int(field[1].getCBuffer()));
+				refreshWindow();
+				field[0].resetBuffer();
+				field[1].resetBuffer();
+				mvprintw(field[0].getYpos(), field[0].getXpos(), "      ");
+				mvprintw(field[1].getYpos(), field[1].getXpos(), "      ");
+				current = 0;
+				move(field[current].getYpos(), field[current].getXpos() + field[current].getCpos());
 				break;
 			case KEY_BACKSPACE:
 				field[current].delFromBuffer();
@@ -112,26 +124,20 @@ wvertical("|                   |")
 				move(field[current].getYpos(), field[current].getXpos() + field[current].getCpos());
 				break;
 			default:
-				/* If this is a normal character, it gets */
-				/* Printed				  */
 				field[current].addToBuffer((char) ch);
 				mvprintw(field[current].getYpos(), field[current].getXpos(), "%s", field[current].getCBuffer());
+				move(field[current].getYpos(), field[current].getXpos() + field[current].getCpos());
 				break;
 		}
 	}
 	attroff(COLOR_PAIR(1));
-	/* Un post form and free the memory */
-	/*unpost_form(my_form);
-	free_form(my_form);
-	free_field(field[0]);
-	free_field(field[1]);*/
-
+	getch();
 	endwin();
 }
 
 int main()
 {
-	trackerGUI gay;
+	trackerGUI gui;
 
 	return 0;
 }

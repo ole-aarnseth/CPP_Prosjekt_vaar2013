@@ -3,12 +3,63 @@
 
 using namespace music;
 
-tools mytools;
 song mySong("Untitled", 100);
 char myArr[255];
 
+void tracker::createWindow()
+{
+	int tempy = wstarty;
+	int stop = wheight - 2;
+
+	char *wh = (char*)whorizontal.c_str();
+	char *wv = (char*)wvertical.c_str();
+
+	mvprintw(tempy, wstartx, "%s", wh);
+
+	for (int i = 0; i < stop; i++)
+	mvprintw(++tempy, wstartx, "%s", wv);
+
+	mvprintw(++tempy, wstartx, "%s", wh);
+	mvprintw(wstarty - 1, (COLS - 16) / 2, "Note:   Length:");
+	refresh();
+}
+
+void tracker::refreshWindow()
+{
+	attroff(COLOR_PAIR(1));
+	int tempy = wstarty + wheight - 2;
+	int tempx = wstartx + 5;
+	int stop = wheight - 2;
+
+	if (stop < note.size())
+	{
+		int y = note.size() - 1;
+		for (int i = 0; i < stop; i++)
+		{
+			mvprintw(tempy, tempx, "               ");
+			attron(A_UNDERLINE);
+			mvprintw(tempy--, tempx, "%s       %d", (char*)note[y].c_str(), length[y]);
+			attroff(A_UNDERLINE);
+			y--;
+		}
+	}
+
+	else
+	{
+		for (int i = note.size() - 1; i >= 0; i--)
+		{
+			mvprintw(tempy, tempx, "               ");
+			attron(A_UNDERLINE);
+			mvprintw(tempy--, tempx, "%s       %d", (char*)note[i].c_str(), length[i]);
+			attroff(A_UNDERLINE);
+		}
+	}
+
+	attron(COLOR_PAIR(1));
+}
+
 void tracker::track(){
-	
+
 	int currentbar = 0;
 	int ch;
 	initscr();
@@ -16,13 +67,13 @@ void tracker::track(){
 	keypad(stdscr, TRUE);
 	noecho();
 	refresh();
-		
+
 	dispMenu();
-	
+
 	while(true){
-	
+
 	ch = getch();
-	
+
 	if(ch == KEY_F(2)){
 	char key[10];
 	char length[10];
@@ -30,17 +81,17 @@ void tracker::track(){
 	std::string str;
 	echo();
 	printw("\nEnter key: ");
-	getstr(key);  
+	getstr(key);
 	printw("Enter length: ");
 	getstr(length);
-	str = mytools.convertLetter(key);
-	note myNote(str, mytools.char2int(length));
-	
+	str = toolBox.convertLetter(key);
+	note myNote(str, toolBox.char2int(length));
+
 	  if(mySong.addNotes(myNote,currentbar)){
 	  dispMenu();
 	  char buff[500];
 	  printw("\n");
-	  printw(mytools.int2char(buff, currentbar));
+	  printw(toolBox.int2char(buff, currentbar));
 	  printw("\n");
 	  printw(mySong.bar2char(buff, currentbar));
 	  }
@@ -51,63 +102,63 @@ void tracker::track(){
 
 	if(ch == KEY_F(3))
 	{
-	 	  
+
 	  char noteindeks[10];
 	  echo();
 	  printw("\nNumber of note to delete: ");
 	  printw("\n");
 	  getstr(noteindeks);
 
-	  if(mySong.deleteNote(currentbar, mytools.char2int(noteindeks)))
+	  if(mySong.deleteNote(currentbar, toolBox.char2int(noteindeks)))
 	  {
 	    dispMenu();
 	    char buff[500];
 	    printw("\n");
-	    printw(mytools.int2char(buff, currentbar));
+	    printw(toolBox.int2char(buff, currentbar));
 	    printw("\n");
 	    printw(mySong.bar2char(buff, currentbar));
 	  }
-	  
+
 	  else
 	  {
 	    printw("Could not delete note!");
 	  }
 	}
-	
+
 	if(ch == KEY_F(4)){
 	mySong.addBar();
 	currentbar++;
 	dispMenu();
 	}
-	
+
 	if(ch == KEY_F(6)){
 	char buffer[10];
 	printw("\nHow many times? ");
 	echo();
 	getstr(buffer);
-	int iterations = mytools.char2int(buffer);
+	int iterations = toolBox.char2int(buffer);
 	for(int i = 0; i < iterations; i++){
 	  mySong.play();
 	}
 	printw("\nDone ");
 	}
-	
+
 	if(ch == KEY_F(5)){
 	char buffer[10];
 	printw("\nWhat bar do you want to erase? ");
 	echo();
 	getstr(buffer);
-	int tall = mytools.char2int(buffer);
+	int tall = toolBox.char2int(buffer);
 	for(int i = 1; i < mySong.getBar(tall-1).getAntT(); i++)
 	{
 	  mySong.deleteNote(tall, i);
 	}
-	if(mySong.delBar(mytools.char2int(buffer)))
+	if(mySong.delBar(toolBox.char2int(buffer)))
 	{
 	    dispMenu();
-	  
+
 	}
-	
+
 	else
 	{
 	    printw("Invalid selection!");
@@ -120,10 +171,10 @@ void tracker::track(){
 	echo();
 	printw("New BPM: ");
 	getstr(buffer);
-	mySong.setBpm(mytools.char2int(buffer));
+	mySong.setBpm(toolBox.char2int(buffer));
 	dispMenu();
 	}
-	
+
 	if(ch == KEY_F(9)){
 	currentbar = 1;
 	demo myDemo;
@@ -133,17 +184,17 @@ void tracker::track(){
 	printw("\n");
 	printw(mySong.bar2char(buff, currentbar));
 	}
-	
+
 	if(ch == KEY_F(17)){
 	char buffer[10];
-	echo();  
+	echo();
 	bar myBar = mySong.getBar(mySong.barCount()-1);
-	mytools.dbl2char(myBar.getTimeleft(),buffer);
+	toolBox.dbl2char(myBar.getTimeleft(),buffer);
 	printw("Timeleft in the current bar: ");
 	printw(buffer);
 	printw("\n");
 	}
-	
+
 	if(ch == KEY_F(7)){
 	char buffer[255];
 	printw("\nNew name: ");
@@ -152,28 +203,28 @@ void tracker::track(){
 	mySong.rnTitle(buffer);
 	dispMenu();
 	}
-	
+
 	if(ch == KEY_F(10)){
 	  currentbar = 0;
 	  mySong = song("Untitled", 100);
 	  dispMenu();
 	}
-	
+
 	if(ch == KEY_F(12))
 		break;//Exits program
-		
+
 	if(ch == 259 && mySong.barCount() > currentbar)//<
 	{
 	    clear();
-	    dispMenu(); 
+	    dispMenu();
 	    currentbar++;
 	    char buff[1000];
 	    printw("\n");
-	    printw(mytools.int2char(buff, currentbar));
+	    printw(toolBox.int2char(buff, currentbar));
 	    printw("\n");
 	    printw(mySong.bar2char(buff, currentbar));
 	}
-	
+
 	if(ch == 258 && currentbar-1 != 0)//<
 	{
 	    clear();
@@ -181,16 +232,16 @@ void tracker::track(){
 	    currentbar--;
 	    char buff[1000];
 	    printw("\n");
-	    printw(mytools.int2char(buff, currentbar));
+	    printw(toolBox.int2char(buff, currentbar));
 	    printw("\n");
 	    printw(mySong.bar2char(buff, currentbar));
 	}
-    
-    refresh();	
+
+    refresh();
     }
-		
+
 endwin();
-	
+
 mainMenu mainM;
 }
 
@@ -206,15 +257,15 @@ int pos = (80 - 48) / 2;
 	printw("\nF2 = NOTE + | F4 BAR + | F6 = PLAY | F8 = BPM | F9 = DEMO | F12 = EXIT");
 	printw("\nF3 = NOTE - | F5 BAR - | F4 = CP BARS | F7 = RN SONG | F10 = NEW SONG  \n");
 	printw("-----------------------------------------------------------------------");
-	
+
 	printw("\nSong name: ");
 	printw(mySong.getTitle().c_str());
 	printw(" | Current BPM: ");
-	printw(mytools.int2char(myArr,mySong.getBpm()));
+	printw(toolBox.int2char(myArr,mySong.getBpm()));
 	printw(" | Bar count: ");
-	printw(mytools.int2char(myArr,mySong.barCount()));
+	printw(toolBox.int2char(myArr,mySong.barCount()));
 	printw(" | Note count: ");
-	printw(mytools.int2char(myArr,mySong.noteCount()));
-	
+	printw(toolBox.int2char(myArr,mySong.noteCount()));
+
 	printw("\n\n");
 }

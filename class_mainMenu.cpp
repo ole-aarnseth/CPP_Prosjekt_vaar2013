@@ -70,11 +70,10 @@ starty(0)
 
 	if (choice == 1)
 	{
-		// <start piano mode>
 		clear();
 		keyboard keyb;
 		keyb.playSound();
-		
+
 	}
 
 	else if (choice == 2)

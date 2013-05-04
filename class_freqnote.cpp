@@ -1,7 +1,5 @@
 #include "class_freqnote.h"
 
-#define A 1.0594630943592952
-
 using namespace freq;
 
 int FreqNote::calcHalfStepOffset(std::string note)
@@ -83,7 +81,7 @@ float FreqNote::calcFreq(std::string note)
 {
 	if (note.length() > 3 || note.length() < 2)
 	return -1;
-	
+
 	if(note == "p" || note == "P")
 	return 1;
 

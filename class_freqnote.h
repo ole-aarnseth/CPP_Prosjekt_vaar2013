@@ -3,6 +3,8 @@
 
 #include <string>
 
+#define A 1.0594630943592952
+
 namespace freq{
 
 	class FreqNote

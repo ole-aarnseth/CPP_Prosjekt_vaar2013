@@ -47,13 +47,30 @@ void formField::moveRight()
 	cpos++;
 }
 
-void formField::addToBuffer(char c) //MÅ HUSKE Å STØTTE "ADD-MELLOM"
+void formField::addToBuffer(char c)
 {
-	if (buffer.length() < length)
-	{
-		buffer += c;
-		cpos++;
+	if (buffer.length() == length)
+	return;
+
+	if (cpos == buffer.length())
+	buffer += c;
+
+	else
+        {
+	        std::string nbuff = "";
+
+		for (int i = 0; i < cpos; i++)
+		nbuff += buffer.at(i);
+
+		nbuff += c;
+
+		for (int i = cpos; i < buffer.length(); i++)
+		nbuff += buffer.at(i);
+
+		buffer = nbuff;
 	}
+
+	cpos++;
 }
 
 void formField::delFromBuffer()
