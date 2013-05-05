@@ -26,7 +26,7 @@ namespace music{
 			void play();
 			bar getBar(int i);
 			bool delBar(int i);
-			const char* bar2char(char *src, int number);
+			char* bar2char(char *src, int number);
 			int noteCount();
 			void rnTitle(std::string newname);
 			bool deleteNote(int, int);

@@ -35,15 +35,14 @@ void song::setBpm(int newbpm){
 //legger til en note på en bestemt bar, og returnerer true hvis operasjonen var vellykket.
 bool song::addNotes(note myNote, int barindeks){
   if(barindeks-1 < bars.size()){
-    
-    if(bars[barindeks-1].addNote(myNote))
-    {
-    return true;
-    }
+    if(validateNote(myNote.getKey()) && validateNoteLength(myNote.getLength()))
+      if(bars[barindeks-1].addNote(myNote))
+      {
+      return true;
+      }
   return false;
   }
-
-  return false;
+return false;
 }
 
 //legger til en ny bar i vectoren bars.
@@ -95,7 +94,7 @@ return false;
 }
 
 //gjør om notene i bars til char.
-const char* song::bar2char(char *src, int number){
+char* song::bar2char(char *src, int number){
   std::string output;
   tools myTools;
   bar thisbar = bars[number-1];

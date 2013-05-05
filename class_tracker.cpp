@@ -213,7 +213,7 @@ void tracker::track(){
 	if(ch == KEY_F(12))
 		break;//Exits program
 
-	if(ch == KEY_UP && mySong.barCount() > currentbar)//<
+	if(ch == 259 && mySong.barCount() > currentbar)//<
 	{
 	    clear();
 	    dispMenu();
@@ -225,7 +225,7 @@ void tracker::track(){
 	    printw(mySong.bar2char(buff, currentbar));
 	}
 
-	if(ch == KEY_DOWN && currentbar-1 != 0 && mySong.barCount()>0)//<
+	if(ch == 258 && currentbar-1 != 0 && mySong.barCount()>0)//<
 	{
 	    clear();
 	    dispMenu();
