@@ -5,32 +5,34 @@
 
 using namespace music;
 
+//konstruktør
 song::song(std::string c_title, int c_bpm)
 {
   title = c_title;
   bpm = c_bpm;
 }
 
+//getfunksjon for bpm.
 int song::getBpm(){
   return bpm;
 }
 
+//getfunksjon for title.
 std::string song::getTitle(){
   return title;
 }
 
+//setfunksjon for title;
 void song::rnTitle(std::string newname){
   title = newname;
 }
 
-void song::rename(std::string newtitle){
-  title = newtitle;
-}
-
+//setfunksjon for bpm.
 void song::setBpm(int newbpm){
   bpm = newbpm;
 }
 
+//legger til en note på en bestemt bar, og returnerer true hvis operasjonen var vellykket.
 bool song::addNotes(note myNote, int barindeks){
   if(barindeks-1 < bars.size()){
     
@@ -44,15 +46,18 @@ bool song::addNotes(note myNote, int barindeks){
   return false;
 }
 
+//legger til en ny bar i vectoren bars.
 bool song::addBar(){
   bar newbar;
   bars.push_back(newbar);
 }
 
+//returnerer størrelsen til vectoren bars.
 int song::barCount(){
   return bars.size();
 }
 
+//returnerer antall noter totalt i bars.
 int song::noteCount(){
 int counter = 0;
   for(int i = 0; i < bars.size(); i++){
@@ -61,15 +66,18 @@ int counter = 0;
   return counter;
 }
 
+//kaller på playSequence og parse som spiller av alle bars og noter som befinner seg i bars, til et visst tempo.
 void song::play(){
   sound mySound;
   mySound.playSequence(mySound.parse(bars,bpm));
 }
 
+//getfunksjon for vectoren bars.
 bar song::getBar(int i){
   return bars[i];
 }
 
+//fjerner en bar fra vectoren bars.
 bool song::delBar(int i){
   
   if(i == 0)
@@ -86,6 +94,7 @@ bool song::delBar(int i){
 return false;
 }
 
+//gjør om notene i bars til char.
 const char* song::bar2char(char *src, int number){
   std::string output;
   tools myTools;
@@ -103,6 +112,7 @@ src = (char*)output.c_str();
 return src;
 }
 
+//sjekker at riktig form for note blir tastet inn.
 bool song::validateNote(std::string note)
 {
   int wrongCount = 0;
@@ -197,11 +207,12 @@ bool song::validateNote(std::string note)
   }
 }
 
+//sjekker at notens lengde er riktig.
 bool song::validateNoteLength(int i)
 {
   int wrongCount = 0;
 
-  if(i == 1 || i == 4 || i == 8 || i == 16 || i == 32)
+  if(i == 1 || i == 2 || i == 4 || i == 8 || i == 16 || i == 32)
   {
 
   }
@@ -226,6 +237,7 @@ bool song::validateNoteLength(int i)
 
 }
 
+//sletter en note fra en gitt bar i vectoren bars.
 bool song::deleteNote(int barindeks, int noteindeks)
 {
   if(barindeks-1 < bars.size())

@@ -1,8 +1,10 @@
-#include "class_sound.h"
 #include <iostream>
+#include "class_sound.h"
+
 
 using namespace music;
 
+//spiller av en hel vector med noter.
 void sound::playSequence(std::vector<note_t> param){
   	int fd = open("/dev/console", O_WRONLY);
 
@@ -31,11 +33,13 @@ std::vector<note_t> output;
 return output;
 }
 
+//regner ut hvor lenge tonen skal spille i millisekunder.
 int sound::calculateLength(double length, int bpm){
 int notelength = ((60 * 1000)/bpm)*(4/length);
 return notelength; 
 }
 
+//spiller av en enkelt tone, med mulighet for å spille av tonen konstant.
 void sound::makeSound(int l, int h, bool cont)
 {
 	int fd = open("/dev/console", O_WRONLY);
