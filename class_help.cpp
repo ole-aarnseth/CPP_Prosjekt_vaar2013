@@ -3,6 +3,7 @@
 
 using namespace music;
 
+//printer ut info om hvordan man bruker programmet.
 void help::printHelp()
 {
   initscr();

@@ -244,9 +244,7 @@ void keyboard::printPiano(char c, char d)
   printw("\nPress K to play note G#");addch(d);
   printw("\nPress , to play note A");addch(d);
 
-
-
-  printw("\n\nPress CAPS to increase octaves or < to decrease.\n"); 
+  printw("\n\nPress space to increase octaves or < to decrease."); 
   printw("\nPress Q to toggle continuous note");
   printw("\n\nPress F12 to exit.");
    
