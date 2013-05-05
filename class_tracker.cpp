@@ -2,9 +2,6 @@
 
 using namespace music;
 
-//song mySong("Untitled", 100);
-
-
 tracker::tracker() : mySong("untitled", 100)
 {}
 	
