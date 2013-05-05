@@ -16,7 +16,7 @@ namespace music{
 	{
 		int ch, wstarty, wstartx, wheight, wwidth;
 		std::string whorizontal, wvertical;
-		std::vector<std::string> note;
+		std::vector<std::string> notelist;
 		std::vector<int> length;
 		std::vector<formField> field;
 		tools toolBox;

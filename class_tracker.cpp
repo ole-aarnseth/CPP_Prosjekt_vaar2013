@@ -31,14 +31,14 @@ void tracker::refreshWindow()
 	int tempx = wstartx + 5;
 	int stop = wheight - 2;
 
-	if (stop < note.size())
+	if (stop < notelist.size())
 	{
-		int y = note.size() - 1;
+		int y = notelist.size() - 1;
 		for (int i = 0; i < stop; i++)
 		{
 			mvprintw(tempy, tempx, "               ");
 			attron(A_UNDERLINE);
-			mvprintw(tempy--, tempx, "%s       %d", (char*)note[y].c_str(), length[y]);
+			mvprintw(tempy--, tempx, "%s       %d", (char*)notelist[y].c_str(), length[y]);
 			attroff(A_UNDERLINE);
 			y--;
 		}
@@ -46,11 +46,11 @@ void tracker::refreshWindow()
 
 	else
 	{
-		for (int i = note.size() - 1; i >= 0; i--)
+		for (int i = notelist.size() - 1; i >= 0; i--)
 		{
 			mvprintw(tempy, tempx, "               ");
 			attron(A_UNDERLINE);
-			mvprintw(tempy--, tempx, "%s       %d", (char*)note[i].c_str(), length[i]);
+			mvprintw(tempy--, tempx, "%s       %d", (char*)notelist[i].c_str(), length[i]);
 			attroff(A_UNDERLINE);
 		}
 	}
