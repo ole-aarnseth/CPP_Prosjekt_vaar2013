@@ -1,4 +1,10 @@
 #include "class_mainMenu.h"
+#include "class_tracker.h"
+#include "class_keyboard.h"
+#include "class_help.h"
+
+
+
 
 using namespace music;
 
@@ -76,7 +82,8 @@ starty(0)
 	else if (choice == 2)
 	{
 		clear();
-		trackerGUI myTracker;
+		tracker myTracker;
+		myTracker.track();
 	}
 
 	else if (choice == 3)
