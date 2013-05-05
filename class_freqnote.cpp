@@ -4,9 +4,14 @@ using namespace freq;
 
 int FreqNote::calcHalfStepOffset(std::string note)
 {
+	// Først må den finne ut avvik i forhold til siste siffer:
+
 	int n = note.at(note.length() - 1) - '0';
 
 	n = (n - 4) * 12;
+
+
+	// Så adderes resten av avviket basert på bokstav og andre modifikatorer
 
 	if (note.length() == 2)
 	{
@@ -79,13 +84,20 @@ int FreqNote::calcHalfStepOffset(std::string note)
 
 float FreqNote::calcFreq(std::string note)
 {
+	// Sperr bad input
 	if (note.length() > 3 || note.length() < 2)
 	return -1;
 
 	if(note == "p" || note == "P")
 	return 1;
 
+	// Regn ut halfstep avvik:
 	int n = calcHalfStepOffset(note);
+
+	/*
+	Her regnes frekvens ut, vi har benyttet følgende formel:
+	http://www.phy.mtu.edu/~suits/NoteFreqCalcs.html
+	*/
 
 	long double a = 440.00;
 
