@@ -225,7 +225,7 @@ void tracker::track(){
 	    printw(mySong.bar2char(buff, currentbar));
 	}
 
-	if(ch == 258 && currentbar-1 != 0)//<
+	if(ch == 258 && currentbar-1 != 0 && mySong.barCount()>0)//<
 	{
 	    clear();
 	    dispMenu();
