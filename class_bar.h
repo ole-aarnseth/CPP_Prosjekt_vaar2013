@@ -10,7 +10,7 @@ namespace music{
 
 	class bar
 	{
-	std::vector<note> notes;
+	std::vector<note> notes;//Alle notene i en bar.
 	int ant_noter;	//Used for iteration
 	double timeleft; //Holde øye med hvor mye av takten som gjenstår.		
 		public:

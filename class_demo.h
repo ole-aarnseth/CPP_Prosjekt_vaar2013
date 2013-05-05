@@ -9,8 +9,7 @@ namespace music{
 	class demo
 	{
 		public:
-			song grieg();
-			
+		      song grieg();		
 	};
 
 }

@@ -3,7 +3,9 @@
 
 using namespace music;
 
-song demo::grieg(){ //Forferdelig metode for Griegdemo. 
+//Forferdlig stor og kjip metode som i sisteliten ble laget for å ha
+//en demo. 
+song demo::grieg(){ 
 	
 	song mySong("Grieg", 200);
 	

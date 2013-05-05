@@ -5,28 +5,8 @@
 
 using namespace music;
 
-int tools::getNumber(){
-std::string input = "";
-int myNumber = 0;
-
-	while (true)
-	{
-	std::getline(std::cin, input);
-	std::stringstream myStream(input);
-	if (myStream >> myNumber)
-		break;
-	}
-
-return myNumber;
-}
-
-std::string tools::getString(){
-std::string input = "";
-std::getline(std::cin, input);
-return input;
-}
-
-const char* tools::int2char(char *src, int number) {//Tar imot en pointer til en chararr og returnerer pointer besudlet.
+//Tar imot en *charArr og et nummer. Returnerer en pointer til mottat charrArr.
+const char* tools::int2char(char *src, int number) {
 std::stringstream strs;
 strs << number;
 std::string temp_str = strs.str();
@@ -34,6 +14,31 @@ src = (char*) temp_str.c_str();
 return src;
 }
 
+//Gjør om fra double to char*.
+void tools::dbl2char(double d, char* c){
+    sprintf(c , "%lf" , d);
+}
+
+//Gjør om fra int til string
+std::string tools::int2string(int number){
+std::string s;
+std::stringstream out;
+out << number;
+s = out.str();
+return s;
+}
+
+//Gjør om den første bokstaven i s fra lower til upper case. 
+//Funksjonen brukes kun til noter da resten av programmet er avhengig av 
+//at notene er i upper case.
+std::string tools::convertLetter(std::string s)
+{  
+if(s[0]>90)
+    s[0]-=32;
+return s;
+}
+
+//Gjør om en chararr til en int. 
 int tools::char2int(char str[])
 {
 	int p_tens = 1, r = 0;
@@ -81,23 +86,4 @@ int tools::char2int(char str[])
 	}
 
 	return r;
-}
-
-void tools::dbl2char(double d, char* c){
-    sprintf(c , "%lf" , d);
-}
-
-std::string tools::int2string(int number){
-std::string s;
-std::stringstream out;
-out << number;
-s = out.str();
-return s;
-}
-
-std::string tools::convertLetter(std::string s)
-{  
-if(s[0]>90)
-    s[0]-=32;
-return s;
 }
