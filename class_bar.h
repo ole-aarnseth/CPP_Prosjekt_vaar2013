@@ -12,7 +12,7 @@ namespace music{
 	{
 	std::vector<note> notes;//Alle notene i en bar.
 	int ant_noter;	//Used for iteration
-	double timeleft; //Holde øye med hvor mye av takten som gjenstår.		
+	double timeused; //Holde øye med hvor mye av takten som gjenstår.		
 		public:
 			bar();
 			bool addNote(note myNote);
