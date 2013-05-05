@@ -3,11 +3,11 @@ CUR=-lncurses
 
 all: music show_msg
 
-music: proto.o class_mainMenu.o class_keyboard.o class_trackerGUI.o class_sound.o class_freqnote.o class_song.o class_bar.o class_note.o class_tools.o class_formField.o class_demo.o
-	$(CMP) proto.o class_mainMenu.o class_keyboard.o class_trackerGUI.o class_sound.o class_freqnote.o class_song.o class_bar.o class_note.o class_tools.o class_formField.o class_demo.o -o music $(CUR)
+music: beeptracker.o class_mainMenu.o class_keyboard.o class_tracker.o class_sound.o class_freqnote.o class_song.o class_bar.o class_note.o class_tools.o class_demo.o class_help.o
+	$(CMP) beeptracker.o class_mainMenu.o class_keyboard.o class_tracker.o class_sound.o class_freqnote.o class_song.o class_bar.o class_note.o class_tools.o class_demo.o class_help.o -o beeptracker $(CUR)
 
-proto.o: proto.cpp
-	$(CMP) -c proto.cpp $(CUR)
+beeptracker.o: beeptracker.cpp
+	$(CMP) -c beeptracker.cpp $(CUR)
 
 class_mainMenu.o: class_mainMenu.cpp class_mainMenu.h
 	$(CMP) -c class_mainMenu.cpp class_mainMenu.h $(CUR)
@@ -15,8 +15,8 @@ class_mainMenu.o: class_mainMenu.cpp class_mainMenu.h
 class_keyboard.o: class_keyboard.cpp class_keyboard.h
 	$(CMP) -c class_keyboard.cpp class_keyboard.h $(CUR)
 	
-class_trackerGUI.o: class_trackerGUI.cpp class_trackerGUI.h
-	$(CMP) -c class_trackerGUI.cpp class_trackerGUI.h $(CUR)
+class_tracker.o: class_tracker.cpp class_tracker.h
+	$(CMP) -c class_tracker.cpp class_tracker.h $(CUR)
 	
 class_sound.o: class_sound.cpp class_sound.h
 	$(CMP) -c class_sound.cpp class_sound.h $(CUR)
@@ -35,15 +35,15 @@ class_note.o: class_note.cpp class_note.h
 	
 class_tools.o: class_tools.cpp class_tools.h
 	$(CMP) -c class_tools.cpp class_tools.h $(CUR)
-	
-class_formField.o: class_formField.cpp class_formField.h
-	$(CMP) -c class_formField.cpp class_formField.h
 
 class_demo.o: class_demo.cpp class_demo.h
 	$(CMP) -c class_demo.cpp class_demo.h $(CUR)
 
+class_help.o: class_help.cpp class_help.h
+	$(CMP) -c class_help.cpp class_help.h $(CUR)
+
 show_msg:
-	@echo Type \'./music\' to execute program
+	@echo Type \'./beeptracker\' to execute program
 	
 clean:
 	@rm -f *.o *.gch music
