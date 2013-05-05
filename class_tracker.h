@@ -7,7 +7,6 @@
 #include <ncurses.h>
 #include <string>
 #include "class_tools.h"
-#include "class_formField.h"
 #include "class_demo.h"
 #include "class_mainMenu.h"
 
@@ -20,7 +19,6 @@ namespace music{
 		std::string whorizontal, wvertical;
 		std::vector<std::string> notelist;
 		std::vector<int> length;
-		std::vector<formField> field;
 		tools toolBox;
 
 		void createWindow();
