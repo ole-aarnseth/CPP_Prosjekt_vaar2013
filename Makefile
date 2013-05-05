@@ -1,10 +1,10 @@
-CMP=g++ -Wall
+CMP=g++
 CUR=-lncurses
 
 all: music show_msg
 
-music: proto.o class_mainMenu.o class_keyboard.o class_tracker.o class_sound.o class_freqnote.o class_song.o class_bar.o class_note.o class_tools.o class_formField.o class_demo.o
-	$(CMP) proto.o class_mainMenu.o class_keyboard.o class_tracker.o class_sound.o class_freqnote.o class_song.o class_bar.o class_note.o class_tools.o class_formField.o class_demo.o -o music $(CUR)
+music: proto.o class_mainMenu.o class_keyboard.o class_trackerGUI.o class_sound.o class_freqnote.o class_song.o class_bar.o class_note.o class_tools.o class_formField.o class_demo.o
+	$(CMP) proto.o class_mainMenu.o class_keyboard.o class_trackerGUI.o class_sound.o class_freqnote.o class_song.o class_bar.o class_note.o class_tools.o class_formField.o class_demo.o -o music $(CUR)
 
 proto.o: proto.cpp
 	$(CMP) -c proto.cpp $(CUR)
@@ -15,8 +15,8 @@ class_mainMenu.o: class_mainMenu.cpp class_mainMenu.h
 class_keyboard.o: class_keyboard.cpp class_keyboard.h
 	$(CMP) -c class_keyboard.cpp class_keyboard.h $(CUR)
 	
-class_tracker.o: class_tracker.cpp class_tracker.h
-	$(CMP) -c class_tracker.cpp class_tracker.h $(CUR)
+class_trackerGUI.o: class_trackerGUI.cpp class_trackerGUI.h
+	$(CMP) -c class_trackerGUI.cpp class_trackerGUI.h $(CUR)
 	
 class_sound.o: class_sound.cpp class_sound.h
 	$(CMP) -c class_sound.cpp class_sound.h $(CUR)

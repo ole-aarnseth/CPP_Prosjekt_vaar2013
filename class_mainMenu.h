@@ -1,6 +1,9 @@
 #ifndef CLASS_MAINMENU_H
 #define CLASS_MAINMENU_H
 
+#include "class_trackerGUI.h"
+#include "class_keyboard.h"
+#include "class_help.h"
 #include <ncurses.h>
 #include <string>
 
