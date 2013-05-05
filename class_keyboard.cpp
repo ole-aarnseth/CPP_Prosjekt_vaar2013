@@ -19,7 +19,7 @@ using namespace music;
 using namespace freq;
 using namespace std;
 
-
+//spiller av bestemte noter ved å trykke på bestemte taster på tastaturet.
 void keyboard::playSound()
 {
  
@@ -44,7 +44,7 @@ void keyboard::playSound()
         ch = getch();	
 	
 
-	if(ch == 32)//space
+	if(ch == 32)//space, øker oktav. Hvis makslengde er nådd, så går man tilbake til oktav 0.
 	{
 	  if(i == tall.length()-1)
 	  {
@@ -67,7 +67,7 @@ void keyboard::playSound()
 	   printPiano(st, st1);	
 	}
 
-	if(ch == 60)//<
+	if(ch == 60)//<, minsker oktav.
 	{
 	   if(i > 0)
 	   {
@@ -79,12 +79,12 @@ void keyboard::playSound()
 	   printPiano(st, st1);
 	}
 
-        if(ch == KEY_F(12))
+        if(ch == KEY_F(12))//avslutter piano.
 	{
 	    break;
         }
         
-        if(ch == 113 || ch == 81)//z
+        if(ch == 113 || ch == 81)//q
 	{    
 	    s.makeSound(1,1,dontstop);
 	    if(dontstop == false)
@@ -205,6 +205,7 @@ void keyboard::playSound()
   mainMenu mainM;
 }
 
+//printer ut et piano som viser hva du må trykke på for å spille av en note.
 void keyboard::printPiano(char c, char d)
 {
   

@@ -4,19 +4,23 @@
 
 using namespace music;
 
+//konstruktør 
 note::note(std::string c_key, int c_length){	
 key = c_key;
 length = c_length;
 }
 
+//getfunksjon for key.
 std::string note::getKey(){
 return key;
 }
 
+//getfunksjon for length.
 int note::getLength(){
 return length;
 }
 
+//toStringfunksjon som skriver ut key og length.
 std::string note::toString(){
 tools myTools;
 std::string output;
