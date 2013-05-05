@@ -9,11 +9,13 @@
 #include "class_tools.h"
 #include "class_formField.h"
 #include "class_demo.h"
+#include "class_mainMenu.h"
 
 namespace music{
 
 	class tracker
 	{
+		song mySong;
 		int ch, wstarty, wstartx, wheight, wwidth;
 		std::string whorizontal, wvertical;
 		std::vector<std::string> notelist;
@@ -25,6 +27,7 @@ namespace music{
 		void refreshWindow();
 
 		public:
+		  tracker();
 		  void track();
 		  void dispMenu();
 	};

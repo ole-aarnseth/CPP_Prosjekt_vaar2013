@@ -1,11 +1,13 @@
 #include "class_tracker.h"
-#include "class_mainMenu.h"
 
 using namespace music;
 
-song mySong("Untitled", 100);
-char myArr[255];
+//song mySong("Untitled", 100);
 
+
+tracker::tracker() : mySong("untitled", 100)
+{}
+	
 void tracker::createWindow()
 {
 	int tempy = wstarty;
@@ -59,7 +61,7 @@ void tracker::refreshWindow()
 }
 
 void tracker::track(){
-
+  
 	int currentbar = 0;
 	int ch;
 	initscr();
@@ -67,36 +69,33 @@ void tracker::track(){
 	keypad(stdscr, TRUE);
 	noecho();
 	refresh();
-
 	dispMenu();
-
+	
 	while(true){
-
 	ch = getch();
-
-	if(ch == KEY_F(2)){
-	char key[10];
-	char length[10];
-	char buffer[255];
-	std::string str;
-	echo();
-	printw("\nEnter key: ");
-	getstr(key);
-	printw("Enter length: ");
-	getstr(length);
-	str = toolBox.convertLetter(key);
-	note myNote(str, toolBox.char2int(length));
+	if(ch == KEY_F(2)){  
+	  char key[10];
+	  char length[10];
+	  char buffer[255];
+	  std::string str;
+	  echo();
+	  printw("\nEnter key: ");
+	  getstr(key);
+	  printw("Enter length: ");
+	  getstr(length);
+	  str = toolBox.convertLetter(key);
+	  note myNote(str, toolBox.char2int(length));
 
 	  if(mySong.addNotes(myNote,currentbar)){
-	  dispMenu();
-	  char buff[500];
-	  printw("\n");
-	  printw(toolBox.int2char(buff, currentbar));
-	  printw("\n");
-	  printw(mySong.bar2char(buff, currentbar));
-	  }
-	  else{
-	  printw("Invalid insertion!");
+	    dispMenu();
+	    char buff[500];
+	    printw("\n");
+	    printw(toolBox.int2char(buff, currentbar));
+	    printw("\n");
+	    printw(mySong.bar2char(buff, currentbar));
+	    }
+	    else{
+	      printw("Invalid insertion!");
 	  }
 	}
 
@@ -109,18 +108,14 @@ void tracker::track(){
 	  printw("\n");
 	  getstr(noteindeks);
 
-	  if(mySong.deleteNote(currentbar, toolBox.char2int(noteindeks)))
-	  {
+	  if(mySong.deleteNote(currentbar, toolBox.char2int(noteindeks))){
 	    dispMenu();
 	    char buff[500];
 	    printw("\n");
 	    printw(toolBox.int2char(buff, currentbar));
 	    printw("\n");
 	    printw(mySong.bar2char(buff, currentbar));
-	  }
-
-	  else
-	  {
+	  }else{
 	    printw("Could not delete note!");
 	  }
 	}
@@ -149,59 +144,55 @@ void tracker::track(){
 	echo();
 	getstr(buffer);
 	int tall = toolBox.char2int(buffer);
-	for(int i = 1; i < mySong.getBar(tall-1).getAntT(); i++)
-	{
+// 	
+	for(int i = 1; i < mySong.getBar(tall-1).getAntT(); i++){
 	  mySong.deleteNote(tall, i);
 	}
-	if(mySong.delBar(toolBox.char2int(buffer)))
-	{
+	if(mySong.delBar(toolBox.char2int(buffer))){
 	    dispMenu();
-
-	}
-
-	else
-	{
+	}else{
 	    printw("Invalid selection!");
-	}
-
+	  }
 	}
 
 	if(ch == KEY_F(8)){
-	char buffer[10];
-	echo();
-	printw("New BPM: ");
-	getstr(buffer);
-	mySong.setBpm(toolBox.char2int(buffer));
-	dispMenu();
+	  char buffer[10];
+	  echo();
+	  printw("New BPM: ");
+	  getstr(buffer);
+	  mySong.setBpm(toolBox.char2int(buffer));
+	  dispMenu();
 	}
 
 	if(ch == KEY_F(9)){
-	currentbar = 1;
-	demo myDemo;
-	mySong = myDemo.grieg();
-	dispMenu();
-	char buff[255];
-	printw("\n");
-	printw(mySong.bar2char(buff, currentbar));
-	}
+	  currentbar = 1;
+	  demo myDemo;
+	  mySong = myDemo.grieg();
+	  dispMenu();
+	  char buff[255];
+	  printw("Bar: ");
+	  printw(toolBox.int2char(buff, currentbar));
+	  printw("\n");
+	  printw(mySong.bar2char(buff, currentbar));
+	  }
 
 	if(ch == KEY_F(17)){
-	char buffer[10];
-	echo();
-	bar myBar = mySong.getBar(mySong.barCount()-1);
-	toolBox.dbl2char(myBar.getTimeleft(),buffer);
-	printw("Timeleft in the current bar: ");
-	printw(buffer);
-	printw("\n");
+	  char buffer[10];
+	  echo();
+	  bar myBar = mySong.getBar(mySong.barCount()-1);
+	  toolBox.dbl2char(myBar.getTimeleft(),buffer);
+	  printw("Timeleft in the current bar: ");
+	  printw(buffer);
+	  printw("\n");
 	}
 
 	if(ch == KEY_F(7)){
-	char buffer[255];
-	printw("\nNew name: ");
-	echo();
-	getstr(buffer);
-	mySong.rnTitle(buffer);
-	dispMenu();
+	  char buffer[255];
+	  printw("\nNew name: ");
+	  echo();
+	  getstr(buffer);
+	  mySong.rnTitle(buffer);
+	  dispMenu();
 	}
 
 	if(ch == KEY_F(10)){
@@ -213,40 +204,36 @@ void tracker::track(){
 	if(ch == KEY_F(12))
 		break;//Exits program
 
-	if(ch == 259 && mySong.barCount() > currentbar)//<
-	{
+	if(ch == 259 && mySong.barCount() > currentbar){//Piltast opp for å bevege seg oppover i strukturen
 	    clear();
 	    dispMenu();
 	    currentbar++;
-	    char buff[1000];
-	    printw("\n");
+	    char buff[255];
+	    printw("Bar: ");
 	    printw(toolBox.int2char(buff, currentbar));
 	    printw("\n");
 	    printw(mySong.bar2char(buff, currentbar));
 	}
 
-	if(ch == 258 && currentbar-1 != 0 && mySong.barCount()>0)//<
-	{
+	if(ch == 258 && currentbar-1 != 0 && mySong.barCount()>0){//Piltast opp for å bevege seg oppover i strukturen
 	    clear();
 	    dispMenu();
 	    currentbar--;
-	    char buff[1000];
-	    printw("\n");
+	    char buff[255];
+	    printw("Bar: ");
 	    printw(toolBox.int2char(buff, currentbar));
 	    printw("\n");
 	    printw(mySong.bar2char(buff, currentbar));
 	}
-
     refresh();
     }
-
-endwin();
-
-mainMenu mainM;
+endwin();//Ender curses-mode
+mainMenu mainM;//Back to mainmenu
 }
 
 void tracker::dispMenu(){
 clear();
+char myArr[255];//Brukes som buffer
 int pos = (COLS - 48) / 2;
 mvprintw(1, pos, "  ____      ");
 mvprintw(2, pos, " / ___|___  _ __ ___  _ __   ___  ___  ___ _ __ ");
