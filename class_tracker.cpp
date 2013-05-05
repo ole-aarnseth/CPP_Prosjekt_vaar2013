@@ -247,25 +247,27 @@ mainMenu mainM;
 
 void tracker::dispMenu(){
 clear();
-int pos = (80 - 48) / 2;
-	mvprintw(1, pos, "   ___        __                 ______");
-	mvprintw(2, pos, "  / _ \\ ___  / /_ ___ _  ____   /_  __/");
-	mvprintw(3, pos, " / , _// -_)/ __// _ `/ / __/ _  / /");
-	mvprintw(4, pos, "/_/|_| \\__/ \\__/ \\_,_/ /_/   (_)/_/");
-	printw("\n");
+int pos = (COLS - 48) / 2;
+mvprintw(1, pos, "  ____      ");
+mvprintw(2, pos, " / ___|___  _ __ ___  _ __   ___  ___  ___ _ __ ");
+mvprintw(3, pos, "| |   / _ \\| '_ ` _ \\| '_ \\ / _ \\/ __|/ _ \\ '__|");
+mvprintw(4, pos, "| |__| (_) | | | | | | |_) | (_) \\__ \\  __/ |   ");
+mvprintw(5, pos, " \\____\\___/|_| |_| |_| .__/ \\___/|___/\\___|_|   ");
+mvprintw(6, pos, "                     |_|                        ");
 
-	printw("\nF2 = NOTE + | F4 BAR + | F6 = PLAY | F8 = BPM | F9 = DEMO | F12 = EXIT");
-	printw("\nF3 = NOTE - | F5 BAR - | F4 = CP BARS | F7 = RN SONG | F10 = NEW SONG  \n");
-	printw("-----------------------------------------------------------------------");
-
-	printw("\nSong name: ");
-	printw(mySong.getTitle().c_str());
-	printw(" | Current BPM: ");
-	printw(toolBox.int2char(myArr,mySong.getBpm()));
-	printw(" | Bar count: ");
-	printw(toolBox.int2char(myArr,mySong.barCount()));
-	printw(" | Note count: ");
-	printw(toolBox.int2char(myArr,mySong.noteCount()));
+pos = (COLS - 70) / 2;
+mvprintw(8, pos, "F2 = NOTE + | F4 BAR + | F6 = PLAY | F8 = BPM | F9 = DEMO | F12 = EXIT");
+mvprintw(9, pos, "F3 = NOTE - | F5 BAR - | F4 = CP BARS | F7 = RN SONG | F10 = NEW SONG");
+mvprintw(10, pos, "-----------------------------------------------------------------------");
+move(11, pos);
+printw("Song name: ");
+printw((char*)mySong.getTitle().c_str());
+printw(" | Current BPM: ");
+printw(toolBox.int2char(myArr,mySong.getBpm()));
+printw(" | Bar count: ");
+printw(toolBox.int2char(myArr,mySong.barCount()));
+printw(" | Note count: ");
+printw(toolBox.int2char(myArr,mySong.noteCount()));
 
 	printw("\n\n");
 }

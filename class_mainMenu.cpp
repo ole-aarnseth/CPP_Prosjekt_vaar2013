@@ -3,9 +3,6 @@
 #include "class_keyboard.h"
 #include "class_help.h"
 
-
-
-
 using namespace music;
 
 mainMenu::mainMenu() :
@@ -27,14 +24,14 @@ starty(0)
 	noecho();
 	cbreak();	/* Line buffering disabled. pass on everything */
 	curs_set(0); // Hide cursor
-	startx = (80 - WIDTH) / 2;
-	starty = (24 - HEIGHT) / 2;
+	startx = (COLS - WIDTH) / 2;
+	starty = (LINES - HEIGHT) / 2;
 
 	menu_win = newwin(HEIGHT, WIDTH, starty, startx);
 	keypad(menu_win, TRUE);
 
 	// Set header-text:
-	int pos = (80 - 48) / 2;
+	int pos = (COLS - 48) / 2;
 	mvprintw(1, pos, " __  __       _         __  __                  ");
 	mvprintw(2, pos, "|  \\/  | __ _(_)_ __   |  \\/  | ___ _ __  _   _ ");
 	mvprintw(3, pos, "| |\\/| |/ _` | | '_ \\  | |\\/| |/ _ \\ '_ \\| | | |");
